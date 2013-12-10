@@ -2,6 +2,6 @@ Yen.js
 ======
 
 ```javascript
-var accessor = ¥.with(model).proxy(object);
+var accessor = ¥.from(model).proxy(object);
 accessor.getByIdAndName();
 ```
