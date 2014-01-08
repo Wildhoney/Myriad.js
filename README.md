@@ -1,7 +1,7 @@
-Yen.js
+Myriad.js
 ======
 
 ```javascript
-var accessor = ¥.proxy(object).using(model);
+var accessor = myriad.proxy(object).using(model);
 accessor.getByIdAndName();
 ```

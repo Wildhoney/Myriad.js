@@ -1,25 +1,34 @@
 var should = require('should'),
-    yen    = require('./../module/Yen.js');
+    myriad = require('./../module/Myriad.js');
 
 describe('Snapshot.js', function() {
 
-    var $yenDefault, $yenCustom;
+    var $myriadDefault, $myriadCustom;
 
     beforeEach(function() {
         
         var object = {
-            yen: function(properties, order) {
-                
+            myriad: function(properties) {
+
             }
         };
 
-        $yenDefault = yen.proxy(object).using(model);
-        $yenCustom  = yen.proxy(object).using(model);
+        var model = { name: null, age: null, location: null };
+
+        $myriadDefault = new Myriad({
+            model:  model,
+            invoke: object.myriad(),
+            prefix: 'getBy',
+            levels: 3
+        });
         
     });
 
     describe('Basic', function() {
 
+        it('Can setup basic functions', function() {
+            expect(typeof $myriadDefault.getByNameAndId).toEqual('function');
+        });
 
     });
 
