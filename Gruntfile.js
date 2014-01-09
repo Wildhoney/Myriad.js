@@ -27,16 +27,24 @@ module.exports = function(grunt) {
                 src: ['module/Myriad.js', 'package/*.js'],
                 dest: 'dist/<%= pkg.buildName %>.js'
             }
+        },
+        mochaTest: {
+            test: {
+                options: {
+                    reporter: 'spec'
+                },
+                src: ['tests/*.js']
+            }
         }
     });
 
-//    grunt.loadNpmTasks('grunt-contrib-jasmine');
+    grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-concat');
 
-    grunt.registerTask('test', ['jshint']);
-    grunt.registerTask('build', ['jshint', 'concat', 'uglify']);
-    grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
+    grunt.registerTask('test', ['jshint', 'mochaTest']);
+    grunt.registerTask('build', ['jshint', 'mochaTest', 'concat', 'uglify']);
+    grunt.registerTask('default', ['jshint', 'mochaTest', 'concat', 'uglify']);
 
 };

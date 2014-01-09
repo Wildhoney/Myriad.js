@@ -2,6 +2,11 @@
 
     "use strict";
 
+    if ($module) {
+        // Define Underscore if we're using Node.js!
+        var _ = require('underscore');
+    }
+
     /**
      * @module Myriad
      * @constructor
@@ -177,7 +182,7 @@
         $window.Myriad = Myriad;
     }
 
-    if (!$window) {
+    if ($module) {
         // Attach it to the CommonJS object.
         $module.exports = Myriad;
     }

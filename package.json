@@ -1,7 +1,7 @@
 {
   "name": "myriad.js",
   "buildName": "myriad",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "JavaScript version of Ruby's method_missing and PHP's __call without using Harmony's Proxy/Firefox's __noSuchMethod.",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,7 @@
     "grunt": "~0.4.2",
     "grunt-contrib-uglify": "~0.2.7",
     "grunt-contrib-jshint": "~0.7.2",
-    "grunt-contrib-concat": "~0.3.0"
+    "grunt-contrib-concat": "~0.3.0",
+    "underscore": "~1.5.2"
   }
 }
