@@ -14,7 +14,8 @@
         invoke: callback,
         scope: 'String as a scope?!',
         prefix: 'getBy',
-        levels: 4,
+        connector: 'And',
+        depth: 4,
         blacklist: ['function', 'number']
     });
 

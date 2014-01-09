@@ -40,9 +40,9 @@ You can use the `scope` option (see below) to specify what `this` is within your
 
 All arguments are relayed onto the callback (`invoke`) method as the second (and subsequent) argument(s).
 
-<h3>Levels</h3>
+<h3>Depth</h3>
 
-By default Myriad will only delve 3 levels deep into your `model`, which means that `getByNameAndSexAndLocation` would be created, but `getByNameAndSexAndLocationAndEmployed` would not because that's 4 properties. To change the default behaviour to include the latter, you can specify the `levels` option to set it to 4 or above (or less).
+By default Myriad will only delve 3 levels deep into your `model`, which means that `getByNameAndSexAndLocation` would be created, but `getByNameAndSexAndLocationAndEmployed` would not because that's 4 properties. To change the default behaviour to include the latter, you can specify the `depth` option to set it to 4 or above (or less). For no limit at all you can set the property to `Infinity` &ndash; but be careful.
 
 Options
 ------
@@ -81,10 +81,16 @@ Sometimes wild beasts need to be tamed! Myriad has a set of options for modifyin
         <td>Default prefix for method names is <code>getBy</code>, which can be changed with the <code>prefix</code> option by specifying a string.</td>
     </tr>
     <tr>
-        <td><code>levels</code></td>
+        <td><code>depth</code></td>
         <td><code>Number</code></td>
         <td>Nope</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>connector</code></td>
+        <td><code>String</code></td>
+        <td>Nope</td>
+        <td>Allows the overriding of the connecting word, which by default is <strong>And</strong>.</td>
     </tr>
     <tr>
         <td><code>blacklist</code></td>

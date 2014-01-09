@@ -45,7 +45,6 @@
         // Clear arrays and objects.
         this._methods    = [];
         this._properties = [];
-        this._options    = {};
 
         // Memorise the options that were passed in!
         this._options = options;
@@ -103,11 +102,18 @@
         _options: {},
 
         /**
-         * @property _defaultLevels
+         * @property _defaultDepth
          * @type {Number}
          * @private
          */
-        _defaultLevels: 3,
+        _defaultDepth: 3,
+
+        /**
+         * @property _defaultConnector
+         * @type {String}
+         * @private
+         */
+        _defaultConnector: 'And',
 
         /**
          * @method _setup
@@ -133,18 +139,18 @@
 
             // Calculate the difference between the current iteration of properties, and the
             // globally stored properties to determine if there are more methods to create.
-            var difference = _.difference(this._properties, properties);
+            var remainingProperties = _.difference(this._properties, properties);
 
-            if (difference.length) {
+            if (remainingProperties.length) {
 
-                _.forEach(difference, _.bind(function difference(property) {
+                _.forEach(remainingProperties, _.bind(function beginIteration(property) {
 
                     var _properties = _.clone(properties);
 
                     if (properties.length === 1) {
 
                         // Create the first method for the single property if it hasn't yet
-                        // been define, before we start building the additional methods.
+                        // been defined before we start building the additional methods.
                         this._createMethod(_.clone(_properties));
 
                     }
@@ -156,8 +162,8 @@
                     this._createMethod(_properties);
 
                     // Add another iteration if there is still a difference between the `_properties` and
-                    // current set of properties.
-                    if (_properties.length < (this._options.levels || this._defaultLevels)) {
+                    // current set of properties. Also check if we haven't exceeded our desired depth yet.
+                    if (_properties.length < (this._options.depth || this._defaultDepth)) {
                         this._addIteration(_properties);
                     }
 
@@ -182,7 +188,8 @@
             });
 
             // Compose the method name from the components.
-            var _methodName = (this._options.prefix || 'getBy') + _components.join('And');
+            var _connector  = this._options.connector || this._defaultConnector,
+                _methodName = (this._options.prefix || 'getBy') + _components.join(_connector);
 
             // ...And finally add the method!
             this._methods[_methodName] = _.bind(function(args) {

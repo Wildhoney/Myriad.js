@@ -15,7 +15,7 @@ describe('Snapshot.js', function() {
             });
         });
 
-        it('Can setup basic functions with default params', function() {
+        it('Can setup functions with default params', function() {
             $myriad.getByNameAndAge.should.be.an.instanceOf(Function);
             $myriad.getByAgeAndName.should.be.an.instanceOf(Function);
             $myriad.getByAgeAndNameAndLocation.should.be.an.instanceOf(Function);
@@ -23,7 +23,7 @@ describe('Snapshot.js', function() {
 
     });
 
-    describe('Custom Level', function() {
+    describe('Custom Depth', function() {
 
         var $myriad;
 
@@ -32,11 +32,11 @@ describe('Snapshot.js', function() {
                 model:  { name: null, age: null, location: null },
                 invoke: function() {},
                 prefix: 'getBy',
-                levels: 2
+                depth: 2
             });
         });
 
-        it('Can setup basic functions with default params', function() {
+        it('Can setup functions with custom depth', function() {
             $myriad.getByLocation.should.be.an.instanceOf(Function);
             $myriad.getByAgeAndLocation.should.be.an.instanceOf(Function);
             should.strictEqual(undefined, $myriad.getByAgeAndNameAndLocation);
@@ -56,11 +56,32 @@ describe('Snapshot.js', function() {
             });
         });
 
-        it('Can setup basic functions with default params', function() {
+        it('Can setup functions with custom prefix', function() {
             should.strictEqual(undefined, $myriad.getByAge);
             should.strictEqual(undefined, $myriad.getByAgeAndNameAndLocation);
             $myriad.fetchAge.should.be.an.instanceOf(Function);
             $myriad.fetchNameAndLocation.should.be.an.instanceOf(Function);
+        });
+
+    });
+
+    describe('Custom Connector', function() {
+
+        var $myriad;
+
+        beforeEach(function() {
+            $myriad     = new Myriad({
+                model:  { name: null, age: null, location: null },
+                invoke: function() {},
+                connector: 'Then'
+            });
+        });
+
+        it('Can setup functions with custom connector', function() {
+            should.strictEqual(undefined, $myriad.getByAgeAndName);
+            should.strictEqual(undefined, $myriad.getByAgeAndNameAndLocation);
+            $myriad.getByAgeThenNameThenLocation.should.be.an.instanceOf(Function);
+            $myriad.getByNameThenLocation.should.be.an.instanceOf(Function);
         });
 
     });
@@ -77,7 +98,7 @@ describe('Snapshot.js', function() {
             });
         });
 
-        it('Can setup basic functions with default params', function() {
+        it('Can setup functions with custom blacklist', function() {
             should.strictEqual(undefined, $myriad.getByAge);
             should.strictEqual(undefined, $myriad.getByAgeAndLocationAndName);
             $myriad.getByNameAndLocation.should.be.an.instanceOf(Function);
