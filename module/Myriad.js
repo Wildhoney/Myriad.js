@@ -17,19 +17,21 @@
         // Memorise the options that were passed in!
         this._options = options;
 
-        var properties = [];
-
+        // Iterate over each key in the model to determine if it should be considered as a method
+        // name.
         for (var key in options.model) {
 
+            // Usual suspect!
             if (!options.model.hasOwnProperty(key)) {
                 continue;
             }
 
+            // Determine if the key matches one of the types in the blacklist array.
             if (_.contains(this._options.blacklist || [], typeof options.model[key])) {
-                console.log(typeof options.model[key]);
                 continue;
             }
 
+            // Otherwise it's a valid key and should be considered for a method name.
             this._properties.push(key);
 
         }
@@ -66,6 +68,13 @@
          * @private
          */
         _options: {},
+
+        /**
+         * @property _defaultLevels
+         * @type {Number}
+         * @private
+         */
+        _defaultLevels: 3,
 
         /**
          * @method _setup
@@ -115,7 +124,7 @@
 
                     // Add another iteration if there is still a difference between the `_properties` and
                     // current set of properties.
-                    if (_properties.length < this._options.levels) {
+                    if (_properties.length < (this._options.levels || this._defaultLevels)) {
                         this._addIteration(_properties);
                     }
 
@@ -140,7 +149,7 @@
             });
 
             // Compose the method name from the components.
-            var _methodName = this._options.prefix + _components.join('And');
+            var _methodName = (this._options.prefix || 'getBy') + _components.join('And');
 
             // ...And finally add the method!
             this._methods[_methodName] = _.bind(function(args) {
