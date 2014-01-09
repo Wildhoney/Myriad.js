@@ -1,5 +1,4 @@
 var should = require('should'),
-    _      = require('underscore'),
     Myriad = require('./../module/Myriad.js');
 
 describe('Snapshot.js', function() {

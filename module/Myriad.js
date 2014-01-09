@@ -9,8 +9,19 @@
     var _ = ($window) ? $window._ : undefined;
 
     if ($module) {
-        // Define Underscore if we're using Node.js!
-        _ = require('underscore');
+
+        try {
+
+            // Define Underscore if we're using Node.js!
+            _ = require('underscore');
+
+        } catch (e) {
+
+            // Output a more graceful error if it cannot be loaded.
+            console.error('Myriad.js requires Underscore.js: http://underscorejs.org/');
+
+        }
+
     }
 
     /**
