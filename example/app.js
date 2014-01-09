@@ -1,7 +1,8 @@
 (function($myriad) {
 
-    var callback = function callback(properties) {
+    var callback = function callback(properties, args) {
         console.log(properties);
+        console.log(args);
     };
 
     var model = { name: null, age: null, location: null, sex: null };
@@ -14,6 +15,6 @@
         blacklist: ['function']
     });
 
-    myriad.getByNameAndLocationAndSex();
+    myriad.getByNameAndLocationAndSex('ascending');
 
 })(window.Myriad);

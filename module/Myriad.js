@@ -140,8 +140,8 @@
             var _methodName = this._options.prefix + _components.join('And');
 
             // ...And finally add the method!
-            this._methods[_methodName] = _.bind(function() {
-                this._options.invoke(properties);
+            this._methods[_methodName] = _.bind(function(args) {
+                this._options.invoke.apply(null, [].concat([properties], args));
             }, this);
 
         }
