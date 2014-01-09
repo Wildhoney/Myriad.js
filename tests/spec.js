@@ -17,7 +17,7 @@ describe('Snapshot.js', function() {
 
         $myriadDefault = new Myriad({
             model:  model,
-            invoke: object.myriad(),
+            invoke: object.myriad,
             prefix: 'getBy',
             levels: 3
         });
