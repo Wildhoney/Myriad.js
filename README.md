@@ -1,6 +1,10 @@
 Myriad.js
 ======
 
+<img src="https://travis-ci.org/Wildhoney/Myriad.js.png?branch=master" />
+&nbsp;
+<img src="https://badge.fury.io/js/myriad.js.png" />
+
 With Myriad it is possible to mimic the behaviour of Ruby's `method_missing` method, and PHP's `__call`. Since JavaScript doesn't support this type of behaviour natively &ndash; apart from Firefox's `__noSuchMethod`, Myriad.js was created to fill the gap!
 
 Examples
@@ -74,7 +78,7 @@ Sometimes wild beasts need to be tamed! Myriad has a set of options for modifyin
         <td><code>prefix</code></td>
         <td><code>String</code></td>
         <td>Nope</td>
-        <td>Default prefix for method names is `getBy`, which can be changed with the `prefix` option by specifying a string.</td>
+        <td>Default prefix for method names is <code>getBy</code>, which can be changed with the <code>prefix</code> option by specifying a string.</td>
     </tr>
     <tr>
         <td><code>levels</code></td>
@@ -86,6 +90,6 @@ Sometimes wild beasts need to be tamed! Myriad has a set of options for modifyin
         <td><code>blacklist</code></td>
         <td><code>Array</code></td>
         <td>Nope</td>
-        <td>Allows to exclude certain property types in an array. Therefore any properties that are of type `number` could be excluded from being considered as a method name by adding `number` to the `blacklist` array.</td>
+        <td>Allows to exclude certain property types in an array. Therefore any properties that are of type <code>number</code> could be excluded from being considered as a method name by adding <code>number</code> to the <code>blacklist</code> array.</td>
     </tr>
 </table>

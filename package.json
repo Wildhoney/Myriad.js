@@ -1,25 +1,26 @@
 {
-  "name": "Yen.js",
+  "name": "Myriad.js",
+  "buildName": "myriad",
   "version": "0.1.0",
-  "description": "Yen.js ======",
+  "description": "JavaScript version of Ruby's method_missing and PHP's __call without using Harmony's Proxy/Firefox's __noSuchMethod.",
   "main": "index.js",
   "scripts": {
     "test": "grunt test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Wildhoney/Yen.js.git"
+    "url": "https://github.com/Wildhoney/Myriad.js.git"
   },
   "author": "Adam Timberlake <adam.timberlake@gmail.com>",
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/Wildhoney/Yen.js/issues"
+    "url": "https://github.com/Wildhoney/Myriad.js/issues"
   },
   "dependencies": {
     "should": "~2.1.1",
     "grunt": "~0.4.2",
     "grunt-contrib-uglify": "~0.2.7",
     "grunt-contrib-jshint": "~0.7.2",
-    "grunt-mocha-test": "~0.8.1"
+    "grunt-contrib-concat": "~0.3.0"
   }
 }
