@@ -25,7 +25,8 @@
                 continue;
             }
 
-            if (typeof options.model[key] === 'function') {
+            if (_.contains(this._options.blacklist || [], typeof options.model[key])) {
+                console.log(typeof options.model[key]);
                 continue;
             }
 
@@ -109,7 +110,6 @@
                     // Push the current property into the array.
                     _properties.push(property);
 
-
                     // Define the method.
                     this._createMethod(_properties);
 
@@ -144,7 +144,7 @@
 
             // ...And finally add the method!
             this._methods[_methodName] = _.bind(function(args) {
-                this._options.invoke.apply(null, [].concat([properties], args));
+                this._options.invoke.apply(this._options.scope || {}, [].concat([properties], args));
             }, this);
 
         }
