@@ -109,12 +109,15 @@
                     // Push the current property into the array.
                     _properties.push(property);
 
+
                     // Define the method.
                     this._createMethod(_properties);
 
                     // Add another iteration if there is still a difference between the `_properties` and
                     // current set of properties.
-                    this._addIteration(_properties);
+                    if (_properties.length < this._options.levels) {
+                        this._addIteration(_properties);
+                    }
 
                 }, this));
 

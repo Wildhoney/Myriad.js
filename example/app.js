@@ -5,16 +5,16 @@
         console.log(args);
     };
 
-    var model = { name: null, age: null, location: null, sex: null };
+    var model = { name: null, age: null, location: null, sex: null, employed: null };
 
     var myriad = new $myriad({
         model:  model,
         invoke: callback,
         prefix: 'getBy',
-        levels: 3,
+        levels: 4,
         blacklist: ['function']
     });
 
-    myriad.getByNameAndLocationAndSex('ascending');
+    myriad.getByNameAndLocationAndSexAndEmployed('ascending');
 
 })(window.Myriad);
