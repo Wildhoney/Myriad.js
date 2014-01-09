@@ -2,9 +2,15 @@
 
     "use strict";
 
+    /**
+     * @property _
+     * Underscore.js!
+     */
+    var _ = ($window) ? $window._ : undefined;
+
     if ($module) {
         // Define Underscore if we're using Node.js!
-        var _ = require('underscore');
+        _ = require('underscore');
     }
 
     /**
@@ -187,4 +193,4 @@
         $module.exports = Myriad;
     }
 
-})(typeof module !== 'undefined' ? module : {}, typeof window !== 'undefined' ? window : {});
+})(typeof module !== 'undefined' ? module : null, typeof window !== 'undefined' ? window : null);
