@@ -12,7 +12,7 @@
     var myriad = new $myriad({
         model:  model,
         invoke: callback,
-        scope: {},
+        scope: 'String as a scope?!',
         prefix: 'getBy',
         levels: 4,
         blacklist: ['function', 'number']
