@@ -8,6 +8,10 @@
      */
     var Myriad = function Myriad(options) {
 
+        if (typeof _ === 'undefined') {
+            throw 'Myriad.js requires Underscore.js: http://underscorejs.org/';
+        }
+
         if (typeof options.model === 'undefined' || typeof options.model !== 'object') {
             throw 'Option `model` should be an instance of Object.';
         }
@@ -15,6 +19,11 @@
         if (typeof options.invoke === 'undefined' || typeof options.invoke !== 'function') {
             throw 'Option `invoke` should be an instance of Function.';
         }
+
+        // Clear arrays and objects.
+        this._methods    = [];
+        this._properties = [];
+        this._options    = {};
 
         // Memorise the options that were passed in!
         this._options = options;
@@ -155,6 +164,7 @@
 
             // ...And finally add the method!
             this._methods[_methodName] = _.bind(function(args) {
+                args = Array.prototype.slice.apply(arguments);
                 this._options.invoke.apply(this._options.scope || {}, [].concat([properties], args));
             }, this);
 
