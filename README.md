@@ -13,7 +13,7 @@ myriad.getByName();
 // Multiple properties.
 myriad.getByNameAndLocationAndSex();
 
-// Arguments
+// Arguments.
 myriad.getByNameAndLocationAndSex('male');
 ```
 
@@ -50,43 +50,42 @@ Sometimes wild beasts need to be tamed! Myriad has a set of options for modifyin
         <th>Property</th>
         <th>Type</th>
         <th>Required</th>
+        <th>Description</th>
     </tr>
     <tr>
         <td><code>model</code></td>
         <td><code>Object</code></td>
         <td>Yep</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>invoke</code></td>
         <td><code>Function</code></td>
         <td>Yep</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>scope</code></td>
         <td><em>Any</em></td>
         <td>Nope</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>prefix</code></td>
         <td><code>String</code></td>
         <td>Nope</td>
+        <td>Default prefix for method names is `getBy`, which can be changed with the `prefix` option by specifying a string.</td>
     </tr>
     <tr>
         <td><code>levels</code></td>
         <td><code>Number</code></td>
         <td>Nope</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>blacklist</code></td>
         <td><code>Array</code></td>
         <td>Nope</td>
+        <td>Allows to exclude certain property types in an array. Therefore any properties that are of type `number` could be excluded from being considered as a method name by adding `number` to the `blacklist` array.</td>
     </tr>
 </table>
-
-<h3>Prefix</h3>
-
-Default prefix for method names is `getBy`, which can be changed with the `prefix` option by specifying a string.
-
-<h3>Blacklist</h3>
-
-Allows to exclude certain property types in an array. Therefore any properties that are of type `number` could be excluded from being considered as a method name by adding `number` to the `blacklist` array.
