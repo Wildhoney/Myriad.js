@@ -87,9 +87,9 @@ Sometimes wild beasts need to be tamed! Myriad has a set of options for modifyin
 Implementation
 ------
 
-Since JavaScript does not natively support any `method_missing`, `__call`, or even Python's `__getattr__`, Myriad uses a recursive iterator to generate all possible combinations from your model's properties. Each created method has attached the properties that were used to create it in the first please &ndash; which are then passed through to your eventual callback.
+Since JavaScript does not natively support any `method_missing`, `__call`, or even Python's `__getattr__`, Myriad uses recursion to generate all possible combinations from your model's properties. Each created method has attached the properties that were used to create it in the first place &ndash; which are then passed through to your eventual callback.
 
-Myriad is comprised of essentially two methods &ndash; firstly `_addIteration` is invoked passing in the first property that's discovered on your model. Since Myriad knows of all the properties on your model a <code><a href="http://underscorejs.org/#difference">difference</a></code> can be calculated to determine which other properties are required to be attached to it &ndash; `_addIteration` is then called iteratively, adding a new property onto it each and every time.
+Myriad is comprised of essentially two methods &ndash; firstly `_addIteration` is invoked passing in the first property that's discovered on your model. Since Myriad knows of all the properties on your model a <code><a href="http://underscorejs.org/#difference">difference</a></code> can be calculated to determine which other properties are required to be attached to it &ndash; `_addIteration` is then called iteratively, adding a new property onto it each and every time until `difference` eventually yields an empty array.
 
  * `_addIteration(['name'])`;
  * `_addIteration(['name', 'age'])`;
