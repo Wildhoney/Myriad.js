@@ -9,9 +9,7 @@
 
     var model = { name: null, age: null, location: null, sex: null, employed: null };
 
-    var myriad = new $myriad({
-        model:  model,
-        invoke: callback,
+    var myriad = new $myriad(model, callback, {
         scope: 'String as a scope?!',
         prefix: 'getBy',
         connector: 'And',

@@ -26,19 +26,21 @@ All of which can be created without any manual method creating at all. In fact, 
 Getting Started
 ------
 
-In order to get started, Myriad only requires a couple of options from you to begin &ndash; the `model` to create the methods from, and the `invoke` property for the function to invoke.
+In order to get started, Myriad only requires a couple of parameters from you to begin &ndash; the `model` to create the methods from, and the `callback` property for the function to invoke.
 
 ```javascript
-new Myriad({ model: model, invoke: function(properties, args) {
+new Myriad(model, function callback(properties, args) {
 
 });
 ```
+
+Myriad has a third argument which accepts a hash for <a href="#options">setting additional options</a>.
 
 <h3>Callback Scope</h3>
 
 You can use the `scope` option (see below) to specify what `this` is within your callback method, which is particularly useful if you're invoking a method inside of an object. You can therefore specify the `scope` as your object to maintain context!
 
-All arguments are relayed onto the callback (`invoke`) method as the second (and subsequent) argument(s).
+All arguments are relayed onto the callback method as the second (and subsequent) argument(s).
 
 <h3>Depth</h3>
 
@@ -53,49 +55,31 @@ Sometimes wild beasts need to be tamed! Myriad has a set of options for modifyin
     <tr>
         <th>Property</th>
         <th>Type</th>
-        <th>Required</th>
         <th>Description</th>
-    </tr>
-    <tr>
-        <td><code>model</code></td>
-        <td><code>Object</code></td>
-        <td>Yep</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>invoke</code></td>
-        <td><code>Function</code></td>
-        <td>Yep</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>scope</code></td>
         <td><em>Any</em></td>
-        <td>Nope</td>
         <td></td>
     </tr>
     <tr>
         <td><code>prefix</code></td>
         <td><code>String</code></td>
-        <td>Nope</td>
         <td>Default prefix for method names is <code>getBy</code>, which can be changed with the <code>prefix</code> option by specifying a string.</td>
     </tr>
     <tr>
         <td><code>depth</code></td>
         <td><code>Number</code></td>
-        <td>Nope</td>
         <td></td>
     </tr>
     <tr>
         <td><code>connector</code></td>
         <td><code>String</code></td>
-        <td>Nope</td>
         <td>Allows the overriding of the connecting word, which by default is <strong>And</strong>.</td>
     </tr>
     <tr>
         <td><code>blacklist</code></td>
         <td><code>Array</code></td>
-        <td>Nope</td>
         <td>Allows to exclude certain property types in an array. Therefore any properties that are of type <code>number</code> could be excluded from being considered as a method name by adding <code>number</code> to the <code>blacklist</code> array.</td>
     </tr>
 </table>

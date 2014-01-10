@@ -3,14 +3,14 @@ var should = require('should'),
 
 describe('Snapshot.js', function() {
 
+    var $model = { name: null, age: 14, location: null };
+
     describe('Default Params', function() {
 
         var $myriad;
 
         beforeEach(function() {
-            $myriad     = new Myriad({
-                model:  { name: null, age: null, location: null },
-                invoke: function() {},
+            $myriad = new Myriad($model, function() {}, {
                 prefix: 'getBy'
             });
         });
@@ -28,9 +28,7 @@ describe('Snapshot.js', function() {
         var $myriad;
 
         beforeEach(function() {
-            $myriad     = new Myriad({
-                model:  { name: null, age: null, location: null },
-                invoke: function() {},
+            $myriad = new Myriad($model, function() {}, {
                 prefix: 'getBy',
                 depth: 2
             });
@@ -49,9 +47,7 @@ describe('Snapshot.js', function() {
         var $myriad;
 
         beforeEach(function() {
-            $myriad     = new Myriad({
-                model:  { name: null, age: null, location: null },
-                invoke: function() {},
+            $myriad = new Myriad($model, function() {}, {
                 prefix: 'fetch'
             });
         });
@@ -70,9 +66,7 @@ describe('Snapshot.js', function() {
         var $myriad;
 
         beforeEach(function() {
-            $myriad     = new Myriad({
-                model:  { name: null, age: null, location: null },
-                invoke: function() {},
+            $myriad = new Myriad($model, function() {}, {
                 connector: 'Then'
             });
         });
@@ -91,9 +85,7 @@ describe('Snapshot.js', function() {
         var $myriad;
 
         beforeEach(function() {
-            $myriad     = new Myriad({
-                model:  { name: null, age: 12, location: null },
-                invoke: function() {},
+            $myriad = new Myriad($model, function() {}, {
                 blacklist: ['number']
             });
         });

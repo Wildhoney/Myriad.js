@@ -27,18 +27,21 @@
     /**
      * @module Myriad
      * @constructor
+     * @param model {Object}
+     * @param callback {Function}
+     * @param options {Object}
      */
-    var Myriad = function Myriad(options) {
+    var Myriad = function Myriad(model, callback, options) {
 
         if (typeof _ === 'undefined') {
             throw 'Myriad.js requires Underscore.js: http://underscorejs.org/';
         }
 
-        if (typeof options.model === 'undefined' || typeof options.model !== 'object') {
+        if (typeof model === 'undefined' || typeof model !== 'object') {
             throw 'Option `model` should be an instance of Object.';
         }
 
-        if (typeof options.invoke === 'undefined' || typeof options.invoke !== 'function') {
+        if (typeof callback === 'undefined' || typeof callback !== 'function') {
             throw 'Option `invoke` should be an instance of Function.';
         }
 
@@ -47,17 +50,18 @@
         this._properties = [];
 
         // Memorise the options that were passed in!
-        this._options = options;
+        this._callback  = callback;
+        this._options   = options;
 
         // Iterate over each key in the model to determine if it should be considered as a method
         // name.
-        for (var key in options.model) {
+        for (var key in model) {
 
             // Usual suspect!
-            if (options.model.hasOwnProperty(key)) {
+            if (model.hasOwnProperty(key)) {
 
                 // Determine if the key matches one of the types in the blacklist array.
-                if (_.contains(this._options.blacklist || [], typeof options.model[key])) {
+                if (_.contains(this._options.blacklist || [], typeof model[key])) {
                     continue;
                 }
 
@@ -79,6 +83,13 @@
      * @type {Object}
      */
     Myriad.prototype = {
+
+        /**
+         * @property _callback
+         * @type {Object}
+         * @private
+         */
+        _callback: null,
 
         /**
          * @property _methods
@@ -194,7 +205,7 @@
             // ...And finally add the method!
             this._methods[_methodName] = _.bind(function(args) {
                 args = Array.prototype.slice.apply(arguments);
-                this._options.invoke.apply(this._options.scope || {}, [].concat([properties], args));
+                this._callback.apply(this._options.scope || {}, [].concat([properties], args));
             }, this);
 
         }
