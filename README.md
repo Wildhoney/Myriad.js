@@ -83,3 +83,27 @@ Sometimes wild beasts need to be tamed! Myriad has a set of options for modifyin
         <td>Allows to exclude certain property types in an array. Therefore any properties that are of type <code>number</code> could be excluded from being considered as a method name by adding <code>number</code> to the <code>blacklist</code> array.</td>
     </tr>
 </table>
+
+Implementation
+------
+
+Since JavaScript does not natively support any `method_missing`, `__call`, or even Python's `__getattr__`, Myriad uses a recursive iterator to generate all possible combinations from your model's properties. Each created method has attached the properties that were used to create it in the first please &ndash; which are then passed through to your eventual callback.
+
+Myriad is comprised of essentially two methods &ndash; firstly `_addIteration` is invoked passing in the first property that's discovered on your model. Since Myriad knows of all the properties on your model a <code><a href="http://underscorejs.org/#difference">difference</a></code> can be calculated to determine which other properties are required to be attached to it &ndash; `_addIteration` is then called iteratively, adding a new property onto it each and every time.
+
+ * `_addIteration(['name'])`;
+ * `_addIteration(['name', 'age'])`;
+ * `_addIteration(['name', 'age', 'location'])`;
+ * `_addIteration(['name'])`;
+ * `_addIteration(['name', 'location'])`;
+ * `_addIteration(['name', 'location', 'age'])`;
+
+Once the combinations have been generated, the `_createMethod` method takes over to generate those methods with the corresponding properties used to generate it.
+
+
+Contributing
+------
+
+All contributions are welcome provided they come with unit tests. Myriad's tests are written in <a href="http://visionmedia.github.io/mocha/">Mocha</a> in conjunction with Should.js &ndash; please refer to the `tests/spec.js`.
+
+Once you've added your contribution, please open a pull request for it to be merged into master.
