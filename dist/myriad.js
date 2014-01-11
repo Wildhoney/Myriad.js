@@ -33,6 +33,12 @@
      */
     var Myriad = function Myriad(model, callback, options) {
 
+        console.time('Myriad');
+
+        setTimeout(function() {
+            console.timeEnd('Myriad');
+        }, 1);
+
         if (typeof _ === 'undefined') {
             throw 'Myriad.js requires Underscore.js: http://underscorejs.org/';
         }
@@ -45,13 +51,13 @@
             throw 'Option `invoke` should be an instance of Function.';
         }
 
-        // Clear arrays and objects.
+        // Clear the arrays.
         this._methods    = [];
         this._properties = [];
 
         // Memorise the options that were passed in!
-        this._callback  = callback;
-        this._options   = options;
+        this._callback = callback;
+        this._options  = options;
 
         // Iterate over each key in the model to determine if it should be considered as a method
         // name.
@@ -60,8 +66,8 @@
             // Usual suspect!
             if (model.hasOwnProperty(key)) {
 
-                // Determine if the key matches one of the types in the blacklist array.
-                if (_.contains(this._options.blacklist || [], typeof model[key])) {
+                // Determine if the key matches one of the types in the ignore array.
+                if (_.contains(this._options.ignore || [], typeof model[key])) {
                     continue;
                 }
 
@@ -135,7 +141,7 @@
         _setup: function _setup(properties) {
 
             for (var index = 0, numProperties = properties.length; index < numProperties; index++) {
-                this._addIteration([properties[index]], 1);
+                this._addIteration([properties[index]]);
             }
 
         },
@@ -154,7 +160,7 @@
 
             if (remainingProperties.length) {
 
-                _.forEach(remainingProperties, _.bind(function beginIteration(property) {
+                _.forEach(remainingProperties, _.bind(function propertyIteration(property) {
 
                     var _properties = _.clone(properties);
 
@@ -200,12 +206,13 @@
 
             // Compose the method name from the components.
             var _connector  = this._options.connector || this._defaultConnector,
-                _methodName = (this._options.prefix || 'getBy') + _components.join(_connector);
+                _prefix     = (this._options.prefix || 'getBy'),
+                _methodName = _prefix + _components.join(_connector);
 
             // ...And finally add the method!
             this._methods[_methodName] = _.bind(function(args) {
                 args = Array.prototype.slice.apply(arguments);
-                this._callback.apply(this._options.scope || {}, [].concat([properties], args));
+                this._callback.apply(null, [].concat([properties], args));
             }, this);
 
         }

@@ -38,9 +38,16 @@ Myriad has a third argument which accepts a hash for <a href="#options">setting 
 
 <h3>Callback Scope</h3>
 
-You can use the `scope` option (see below) to specify what `this` is within your callback method, which is particularly useful if you're invoking a method inside of an object. You can therefore specify the `scope` as your object to maintain context!
+Since Myriad has no idea on the desired scope for the callback method, you should use `bind` (or Underscore's `bind`) to enforce the context.
 
-All arguments are relayed onto the callback method as the second (and subsequent) argument(s).
+```javascript
+_.bind(function callbackWithStringScope() {
+
+    // "String as a scope!?"
+    console.log(this);
+
+}, 'String as a scope!?');
+```
 
 <h3>Depth</h3>
 
@@ -58,11 +65,6 @@ Sometimes wild beasts need to be tamed! Myriad has a set of options for modifyin
         <th>Description</th>
     </tr>
     <tr>
-        <td><code>scope</code></td>
-        <td><em>Any</em></td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>prefix</code></td>
         <td><code>String</code></td>
         <td>Default prefix for method names is <code>getBy</code>, which can be changed with the <code>prefix</code> option by specifying a string.</td>
@@ -78,9 +80,9 @@ Sometimes wild beasts need to be tamed! Myriad has a set of options for modifyin
         <td>Allows the overriding of the connecting word, which by default is <strong>And</strong>.</td>
     </tr>
     <tr>
-        <td><code>blacklist</code></td>
+        <td><code>ignore</code></td>
         <td><code>Array</code></td>
-        <td>Allows to exclude certain property types in an array. Therefore any properties that are of type <code>number</code> could be excluded from being considered as a method name by adding <code>number</code> to the <code>blacklist</code> array.</td>
+        <td>Allows to exclude certain property types in an array. Therefore any properties that are of type <code>number</code> could be excluded from being considered as a method name by adding <code>number</code> to the <code>ignore</code> array.</td>
     </tr>
 </table>
 

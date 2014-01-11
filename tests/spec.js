@@ -80,17 +80,17 @@ describe('Snapshot.js', function() {
 
     });
 
-    describe('Custom Blacklist', function() {
+    describe('Custom Ignore', function() {
 
         var $myriad;
 
         beforeEach(function() {
             $myriad = new Myriad($model, function() {}, {
-                blacklist: ['number']
+                ignore: ['number']
             });
         });
 
-        it('Can setup functions with custom blacklist', function() {
+        it('Can setup functions with custom ignore', function() {
             should.strictEqual(undefined, $myriad.getByAge);
             should.strictEqual(undefined, $myriad.getByAgeAndLocationAndName);
             $myriad.getByNameAndLocation.should.be.an.instanceOf(Function);
