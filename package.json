@@ -1,7 +1,7 @@
 {
   "name": "myriad.js",
   "buildName": "myriad",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "JavaScript adaptation of Ruby's method_missing and PHP's __call without using Harmony's Proxy/Firefox's __noSuchMethod.",
   "main": "index.js",
   "scripts": {
