@@ -84,6 +84,11 @@ Sometimes wild beasts need to be tamed! Myriad has a set of options for modifyin
         <td><code>Array</code></td>
         <td>Allows to exclude certain property types in an array. Therefore any properties that are of type <code>number</code> could be excluded from being considered as a method name by adding <code>number</code> to the <code>ignore</code> array.</td>
     </tr>
+    <tr>
+        <td><code>alias</code></td>
+        <td><code>Object</code></td>
+        <td>Adds the ability to specify an object to alias the methods on, which results in your objects having the Myriad generated methods directly.</td>
+    </tr>
 </table>
 
 Implementation
