@@ -55,6 +55,11 @@
         this._methods    = [];
         this._properties = [];
 
+        // Remove the options if it isn't an object.
+        if (options && !_.isObject(options.alias)) {
+            delete options.alias;
+        }
+
         // Memorise the options that were passed in!
         this._callback = callback;
         this._options  = options;
@@ -214,6 +219,14 @@
                 args = Array.prototype.slice.apply(arguments);
                 this._callback.apply(null, [].concat([properties], args));
             }, this);
+
+            // Determine if we need to alias each function onto another object.
+            if (this._options.alias) {
+
+                // Apply the method to the alias object.
+                this._options.alias[_methodName] = this._methods[_methodName];
+
+            }
 
         }
 
