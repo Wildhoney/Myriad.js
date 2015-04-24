@@ -33,12 +33,6 @@
      */
     var Myriad = function Myriad(model, callback, options) {
 
-        console.time('Myriad');
-
-        setTimeout(function() {
-            console.timeEnd('Myriad');
-        }, 1);
-
         if (typeof _ === 'undefined') {
             throw 'Myriad.js requires Underscore.js: http://underscorejs.org/';
         }

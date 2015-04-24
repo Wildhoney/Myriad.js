@@ -1,7 +1,7 @@
 var should = require('should'),
     Myriad = require('./../module/Myriad.js');
 
-describe('Snapshot.js', function() {
+describe('Myriad.js', function() {
 
     var $model = { name: null, age: 14, location: null };
 
