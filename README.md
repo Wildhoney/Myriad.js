@@ -111,6 +111,6 @@ Once the combinations have been generated, the `_createMethod` method takes over
 Contributing
 ------
 
-All contributions are welcome provided they come with unit tests. Myriad's tests are written in <a href="http://visionmedia.github.io/mocha/">Mocha</a> in conjunction with Should.js &ndash; please refer to the `tests/spec.js`.
+All contributions are welcome provided they come with unit tests. Myriad's tests are written in <a href="http://mochajs.org/">Mocha</a> in conjunction with Should.js &ndash; please refer to the `tests/spec.js`.
 
 Once you've added your contribution, please open a pull request for it to be merged into master.
